@@ -1,0 +1,64 @@
+﻿@using DogusTeknoloji.Web.Models.Services.ViewModels
+@{
+    ViewData["Title"] = "Create Product";
+}
+@model CreateProductViewModel
+@section Scripts
+{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js"></script>
+}
+
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h2>Create Product</h2>
+
+        <form asp-action="Create" method="post"  asp-controller="Products">
+    
+            <div class="mb-3">
+                <label asp-for="CategoryId" class="form-label"></label>
+                <select class="form-select" asp-for="CategoryId" asp-items="Model.CategoryList">
+                    <option value="">kategori seçiniz</option>
+
+                </select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+    
+
+            <div class="mb-3">
+                <label asp-for="Name" class="form-label"></label>
+                <input asp-for="Name" class="form-control"/>
+
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Description" class="form-label"></label>
+                <input asp-for="Description" class="form-control"/>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Stock" class="form-label"></label>
+                <input asp-for="Stock" class="form-control"></input>
+                <span asp-validation-for="Stock" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Price" class="form-label"></label>
+                <input asp-for="Price" class="form-control"></input>
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <input type="submit" value="Create" class="btn btn-primary"/>
+            </div>
+        </form>
+        
+
+    </div>
+    
+
+</div>
+
+@section Css
+{
+    <link href="~/css/create.product.css" rel="stylesheet" />
+}
