@@ -3,41 +3,6 @@
 @{
     ViewData["Title"] = "Index";
 }
-@model List<ProductViewModel>
-
-
-<div class="col-md-8 offset-md-2">
-    <a asp-action="Create" asp-controller="Products" class="btn btn-primary">Create New Product</a>
-    <h2>Product List</h2>
-
-
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>Product Name</th>
-            <th>Product Price</th>
-            <th>Product Stock</th>
-            <th>Product Category Name</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach (var product in Model)
-        {
-            <tr>
-                <td>@product.Name</td>
-                <td>@product.Price</td>
-                <td>@product.Stock</td>
-                <td>@product.CategoryName</td>
-                <td>
-                    <!-- Add action buttons here -->
-                        <a asp-controller="Products" asp-action="Edit" asp-route-id="@product.Id" class="btn btn-primary">Edit</a>
-                    <a  asp-controller="Products" asp-action="Delete" asp-route-id="@product.Id" class="btn btn-danger">Delete</a>
-                </td>
-            </tr>
-        }
-        </tbody>
-    </table>
-</div>
-
+<h1>@ViewBag.Name</h1>
+<partial name="PartialViews/_Product_List" model="@ViewBag.productList" />
 

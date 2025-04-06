@@ -1,4 +1,4 @@
-﻿namespace DogusTeknoloji.Web.Models.Repositories;
+﻿namespace DogusTeknoloji2.API.Models.Repositories;
 
 public class Product
 {

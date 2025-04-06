@@ -1,6 +1,6 @@
 ﻿namespace DogusTeknoloji.Web.Models.Services.ViewModels;
 
-public class ProductViewModel
+public class ProductDto
 {
     public int Id { get; set; }
     public string Name { get; set; } = null!;

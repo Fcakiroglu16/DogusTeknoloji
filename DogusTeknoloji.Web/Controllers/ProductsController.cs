@@ -1,16 +1,24 @@
 ﻿using DogusTeknoloji.Web.Models.Services;
 using DogusTeknoloji.Web.Models.Services.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DogusTeknoloji.Web.Controllers;
 
+[Authorize]
 public class ProductsController(IProductService productService) : Controller
 {
+    [AllowAnonymous]
     public IActionResult Index()
     {
+        // productList > Object > List<ProductViewModel>
         var products = productService.GetAll();
-        return View(products);
+
+        ViewBag.productList = products;
+        //ViewBag.Name = "Dogus Teknoloji";
+        return View();
     }
+
 
     [HttpGet]
     public IActionResult Create()
@@ -18,6 +26,7 @@ public class ProductsController(IProductService productService) : Controller
         var createProductViewModel = productService.CreateViewModel();
         return View(createProductViewModel);
     }
+
 
     [HttpPost]
     public IActionResult Create(CreateProductViewModel createProductViewModel)
@@ -29,6 +38,7 @@ public class ProductsController(IProductService productService) : Controller
         return RedirectToAction("Index");
     }
 
+    [Authorize(Roles = "Admin")]
     [HttpGet]
     public IActionResult Delete(int id)
     {
@@ -44,6 +54,7 @@ public class ProductsController(IProductService productService) : Controller
     {
         return View(productService.EditViewModel(id));
     }
+
 
     [HttpPost]
     public IActionResult Edit(EditProductViewModel editProductViewModel)

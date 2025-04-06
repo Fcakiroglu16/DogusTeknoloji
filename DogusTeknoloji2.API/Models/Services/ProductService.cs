@@ -1,5 +1,6 @@
-﻿using DogusTeknoloji.Web.Models.Repositories;
-using DogusTeknoloji.Web.Models.Services.ViewModels;
+﻿using DogusTeknoloji.Web.Models.Services.ViewModels;
+using DogusTeknoloji2.API.Models.Repositories;
+using DogusTeknoloji2.API.Models.Services.Dtos;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DogusTeknoloji.Web.Models.Services;
@@ -15,15 +16,15 @@ public class ProductService : IProductService
         _categoryRepository = categoryRepository;
     }
 
-    public List<ProductViewModel> GetAll()
+    public List<ProductDto> GetAll()
     {
         var productList = _productRepository.GetAll();
 
-        var productViewModelList = new List<ProductViewModel>();
+        var productViewModelList = new List<ProductDto>();
 
         foreach (var product in productList)
         {
-            var productViewModel = new ProductViewModel
+            var productViewModel = new ProductDto
             {
                 Id = product.Id,
                 Name = product.Name,
@@ -38,11 +39,11 @@ public class ProductService : IProductService
         return productViewModelList;
     }
 
-    public CreateProductViewModel CreateViewModel()
+    public CreateProductDto CreateViewModel()
     {
         var categories = _categoryRepository.GetAll();
 
-        var createProductViewModel = new CreateProductViewModel();
+        var createProductViewModel = new CreateProductDto();
 
         createProductViewModel.CategoryList = new SelectList(categories, "Id", "Name");
 
@@ -50,7 +51,7 @@ public class ProductService : IProductService
         return createProductViewModel;
     }
 
-    public CreateProductViewModel CreateViewModel(CreateProductViewModel createProductViewModel)
+    public CreateProductDto CreateViewModel(CreateProductDto createProductViewModel)
     {
         var categories = _categoryRepository.GetAll();
         createProductViewModel.CategoryList = new SelectList(categories, "Id", "Name", createProductViewModel.CategoryId);
@@ -59,7 +60,7 @@ public class ProductService : IProductService
     }
 
 
-    public void Create(CreateProductViewModel createProductViewModel)
+    public void Create(CreateProductDto createProductViewModel)
     {
         var product = new Product
         {
@@ -74,12 +75,12 @@ public class ProductService : IProductService
     }
 
 
-    public ProductViewModel? GetById(int id)
+    public ProductDto? GetById(int id)
     {
         var product = _productRepository.GetById(id);
 
         if (product == null) return null!;
-        var productViewModel = new ProductViewModel
+        var productViewModel = new ProductDto
         {
             Id = product.Id,
             Name = product.Name,
@@ -96,12 +97,12 @@ public class ProductService : IProductService
         if (product != null) _productRepository.Delete(product);
     }
 
-    public EditProductViewModel? EditViewModel(int id)
+    public EditProductDto? EditViewModel(int id)
     {
         var product = _productRepository.GetById(id);
         if (product == null) return null;
         var categories = _categoryRepository.GetAll();
-        var editProductViewModel = new EditProductViewModel
+        var editProductViewModel = new EditProductDto
         {
             Id = product.Id,
             Name = product.Name,
@@ -116,7 +117,7 @@ public class ProductService : IProductService
     }
 
 
-    public void Update(EditProductViewModel editProductViewModel)
+    public void Update(EditProductDto editProductViewModel)
     {
         var product = _productRepository.GetById(editProductViewModel.Id);
         if (product == null) return;
@@ -130,7 +131,7 @@ public class ProductService : IProductService
         _productRepository.Update(product);
     }
 
-    public EditProductViewModel? EditViewModel(EditProductViewModel editProductViewModel)
+    public EditProductDto? EditViewModel(EditProductDto editProductViewModel)
     {
         var categories = _categoryRepository.GetAll();
         editProductViewModel.CategoryList = new SelectList(categories, "Id", "Name", editProductViewModel.CategoryId);

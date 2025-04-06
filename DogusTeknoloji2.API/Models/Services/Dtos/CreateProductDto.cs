@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace DogusTeknoloji.Web.Models.Services.ViewModels;
+namespace DogusTeknoloji2.API.Models.Services.Dtos;
 
-public class CreateProductViewModel
+public class CreateProductDto
 {
     [Required(ErrorMessage = "Ürün ismi boş olamaz")]
     [Display(Name = "Product Name :")]

@@ -4,8 +4,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DogusTeknoloji.Web.Models.Services.ViewModels;
 
-public class CreateProductViewModel
+public class EditProductDto
 {
+    public int Id { get; set; }
+
     [Required(ErrorMessage = "Ürün ismi boş olamaz")]
     [Display(Name = "Product Name :")]
     public string? Name { get; set; } = null!;
@@ -29,7 +31,6 @@ public class CreateProductViewModel
     [Required(ErrorMessage = "Kategori seçiniz")]
     [Display(Name = "Category :")]
     public int? CategoryId { get; set; }
-
 
     [Display(Name = "Is Published :")] public bool IsPublished { get; set; }
 

@@ -32,5 +32,7 @@ public class EditProductViewModel
     [Display(Name = "Category :")]
     public int? CategoryId { get; set; }
 
+    [Display(Name = "Is Published :")] public bool IsPublished { get; set; }
+
     [ValidateNever] public SelectList CategoryList { get; set; } = null!;
 }

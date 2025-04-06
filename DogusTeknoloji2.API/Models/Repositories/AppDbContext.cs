@@ -1,10 +1,8 @@
-﻿using DogusTeknoloji.Web.Models.Repositories.Entities;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace DogusTeknoloji.Web.Models.Repositories;
+namespace DogusTeknoloji2.API.Models.Repositories;
 
-public class AppDbContext : IdentityDbContext<AppUser, AppRole, Guid>
+public class AppDbContext : DbContext
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {

@@ -47,6 +47,13 @@
                 <input asp-for="Price" class="form-control"></input>
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
+            
+            <div class="mb-3 form-check">
+                <input asp-for="IsPublished" class="form-check-input" type="checkbox"/>
+                <label asp-for="IsPublished" class="form-check-label"></label>
+            </div>
+            
+
             <div class="mb-3">
                 <input type="submit" value="Create" class="btn btn-primary"/>
             </div>

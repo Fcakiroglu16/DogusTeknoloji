@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "SignIn";
+}
+@model SignInViewModel
+
+<h1>Sign In</h1>
+<div asp-validation-summary="ModelOnly"></div> 
+<form asp-action="SignIn" method="post" asp-controller="Auth">
+  
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" class="form-control"/>
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Password" class="form-label"></label>
+        <input asp-for="Password" class="form-control" type="password"/>
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <input type="submit" value="Sign In" class="btn btn-primary"/>
+    </div>
+</form>
+
+@section Scripts {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.js"></script>
+}
