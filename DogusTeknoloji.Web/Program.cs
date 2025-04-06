@@ -23,7 +23,7 @@ builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<IUserService, UserService>();
-
+builder.Services.AddScoped<ProductApiService>();
 builder.Services.AddIdentity<AppUser, AppRole>(options =>
     {
         options.User.RequireUniqueEmail = true;
@@ -40,7 +40,7 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.AccessDeniedPath = "/auth/accessdenied";
 });
 
-
+builder.Services.AddHttpClient<ProductApiService>(options => { options.BaseAddress = new Uri("https://localhost:7092"); });
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -28,6 +28,12 @@ public class UserService : IUserService
         var result = userManager.CreateAsync(user, model.Password).Result;
 
 
+        var token = userManager.GenerateEmailConfirmationTokenAsync(user);
+
+        // www.abc.com/email/verify/userId/xxxx-token
+        //email send
+        //
+
         return result.Succeeded;
     }
 
